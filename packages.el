@@ -99,12 +99,14 @@
           "wf" 'w3m-find-file
           "wo" 'v/w3m-open-url
           "wO" 'v/w3m-open-url-new-session
+		  "ww" 'w3m-view-this-url
           "wt" 'w3m-view-this-url-new-session
           "wT" 'w3m-create-empty-session
           "ws" 'w3m-search
           "wS" 'w3m-search-new-session
-          "wl" 'w3m-next-buffer
+          "wH" 'w3m-home-page
           "wh" 'w3m-previous-buffer
+          "wl" 'w3m-next-buffer
           "wx" 'w3m-delete-buffer
           "wd" 'v/w3m-save-buffer-to-file
           "wD" 'w3m-save-buffer
