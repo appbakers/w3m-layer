@@ -74,6 +74,27 @@
   (w3m-goto-url-new-session
    (concat "http://" url)))
 
+(defun v/w3m-toggle-fromto-buffer ()
+  "Switch to a w3m buffer or return to the previous buffer(non w3m buffer)."
+  (interactive)
+  (if (derived-mode-p 'w3m-mode)
+	  ;; Currently in a w3m buffer
+	  ;; Bury buffers until you reach a non-w3m one
+	  (while (derived-mode-p 'w3m-mode)
+		(bury-buffer))
+	;; Not in w3m
+	;; Find the first w3m buffer
+	(let ((list (buffer-list)))
+	  (while list
+		(if (with-current-buffer (car list)
+			  (derived-mode-p 'w3m-mode))
+			(progn
+			  (switch-to-buffer (car list))
+			  (setq list nil))
+		  (setq list (cdr list))))
+	  (unless (derived-mode-p 'w3m-mode)
+		(call-interactively 'w3m)))))
+
 (defun w3m/init-w3m()
   "Initializes w3m and adds keybindings for its exposed functionalities."
   (use-package w3m
@@ -81,6 +102,7 @@
     :init
     (spacemacs/set-leader-keys
       "awo" 'v/w3m-open-url
+      "aww" 'v/w3m-toggle-fromto-buffer
       "awf" 'w3m-find-file
       "aws" 'w3m-search
       )
@@ -94,6 +116,7 @@
           "f" 'evil-find-char
           "F" 'evil-find-char-backward
           "o" 'ace-link-eww
+          "O" 'w3m-history
           "wp" 'v/w3m-player-movie
           "wy" 'v/w3m-copy-link
           "wf" 'w3m-find-file
