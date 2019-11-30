@@ -141,8 +141,16 @@
         ))))
 
 (with-eval-after-load 'w3m
-  (define-key w3m-mode-map (kbd "C-f") 'evil-scroll-page-down)
-  (define-key w3m-mode-map (kbd "C-b") 'evil-scroll-page-up)
+  (define-key w3m-mode-map (kbd "C-v") 'evil-scroll-page-down)
+  (define-key w3m-mode-map (kbd "M-v") 'evil-scroll-page-up)
+  (define-key w3m-mode-map (kbd "C-n") 'evil-next-line)
+  (define-key w3m-mode-map (kbd "C-p") 'evil-prev-line)
+  (define-key w3m-mode-map (kbd "C-f") 'evil-forward-char)
+  (define-key w3m-mode-map (kbd "C-b") 'evil-backword-char)
+  (define-key w3m-mode-map (kbd "M-b") 'evil-backword-word)
+  (define-key w3m-mode-map (kbd "M-f") 'evil-forward-word)
+  (define-key w3m-mode-map (kbd "C-a") 'evil-first-non-blank-of-visual-line)
+  (define-key w3m-mode-map (kbd "C-e") 'evil-end-of-line-or-visual-line)
   (define-key w3m-mode-map (kbd "SPC") 'evil-evilified-state))
 
 (defun v/init-w3m ()
